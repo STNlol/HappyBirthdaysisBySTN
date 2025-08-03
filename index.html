@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Surprise</title>
+	<link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+	<link href="style.css" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<div id="volume-reminder">
+		<div id="volume-icon">🔊</div>
+		<p>Turn the volume up SAHANNAH!</p>
+	</div>
+	<audio id="happy-birthday-audio">
+		<source src="/happy-birthday.mp3" type="audio/mpeg">
+	</audio>
+	<div id="hold-reminder">
+		<p>Hold the candles to blow them</p>
+	</div>
+	<div id="congratulation-overlay">
+		<div id="congratulation-text">Happy Birthdayyy AKAAAA! </div>
+	</div>
+	<script>
+		const audio = document.getElementById('happy-birthday-audio');
+		const volumeReminder = document.getElementById('volume-reminder');
+
+		volumeReminder.addEventListener("click", function () {
+			audio.play();
+			volumeReminder.classList.remove('show');
+			setTimeout(function () {
+				volumeReminder.style.display = 'none';
+			}, 1000);
+		})
+
+		// 控制音量提醒的顯示和隱藏
+		window.addEventListener('load', function () {
+			volumeReminder.classList.add('show');
+		});
+	</script>
+	<script type="module" src="script.js"></script>
+</body>
+
+</html>
