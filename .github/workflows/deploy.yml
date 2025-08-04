@@ -3,15 +3,19 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ "main" ]
+<<<<<<< HEAD
 
 permissions:
   contents: write  # Critical for GH Pages deployment
+=======
+>>>>>>> c382e17c4b5c1d063f4c5fcc3adf0c3420997f6a
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     
     steps:
+<<<<<<< HEAD
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
@@ -22,8 +26,33 @@ jobs:
       - run: npm run build
       - run: mkdir -p ./dist && touch ./dist/.nojekyll
 
+=======
+      # 1. Checkout code
+      - uses: actions/checkout@v4
+
+      # 2. Setup Node.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'  # Recommended LTS version
+
+      # 3. Install dependencies (use npm instead of yarn for consistency)
+      - run: npm ci  # Clean install (faster than regular install)
+
+      # 4. Build project
+      - run: npm run build
+
+      # 5. Add .nojekyll file (critical for Three.js)
+      - run: touch ./dist/.nojekyll
+
+      # 6. Deploy to GH Pages
+>>>>>>> c382e17c4b5c1d063f4c5fcc3adf0c3420997f6a
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+<<<<<<< HEAD
           keep_files: false
+=======
+          keep_files: false  # Clean old files
+          force_orphan: true # Single commit deployment
+>>>>>>> c382e17c4b5c1d063f4c5fcc3adf0c3420997f6a
